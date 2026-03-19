@@ -1,5 +1,6 @@
 # HTML and CSS Generated
 public/*
+!public/.empty
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
