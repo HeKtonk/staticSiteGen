@@ -32,5 +32,9 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("I'm a text node", TextType.PLAIN, "Plain text")
         self.assertIsNotNone(node.url)
 
+    def test_falseProperty(self):
+        node = TextNode("I'm a strange text node", "Very strange")
+        self.assertNotIsInstance(node.text_type, TextType)
+                                 
 if __name__ == "__main__":
     unittest.main()
