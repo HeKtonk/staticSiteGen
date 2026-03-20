@@ -18,5 +18,9 @@ class TestTextNode(unittest.TestCase):
         node = TextNode("I'm a text node", TextType.CODE)
         self.assertIsNone(node.url)
 
+    def test_urlNotNone(self):
+        node = TextNode("I'm a text node", TextType.PLAIN, "Plain text")
+        self.assertIsNotNone(node.url)
+
 if __name__ == "__main__":
     unittest.main()
