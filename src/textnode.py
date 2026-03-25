@@ -30,7 +30,7 @@ class TextNode:
             case TextType.IMAGE:
                 return leafnode.LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
             case _:
-                return leafnode.LeafNode(None, text_node.text)
+                raise ValueError
 
     def __eq__(self, other):
         return (isinstance(other, TextNode)) and (self.text == other.text) and (self.text_type == other.text_type) and (self.url == other.url)
