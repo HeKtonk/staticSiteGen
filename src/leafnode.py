@@ -1,5 +1,4 @@
 from htmlnode import HTMLNode
-from textnode import TextType
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):
