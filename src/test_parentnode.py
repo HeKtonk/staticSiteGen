@@ -39,5 +39,12 @@ class TestParentNode(unittest.TestCase):
             "<div><div><span><b>grandchild</b><i>grandchild_i</i></span><span><b>grandchild</b><i>grandchild_i</i></span><b>grandchild</b></div></div>",
         )
 
+    def test_to_html_without_children(self):
+        with self.assertRaises(TypeError): parent_node = ParentNode("div")
+
+    def test_to_html_with_empty_children(self):
+        parent_node = ParentNode("div", [])
+        with self.assertRaises(ValueError): parent_node.to_html()
+
 if __name__ == "__main__":
     unittest.main()
