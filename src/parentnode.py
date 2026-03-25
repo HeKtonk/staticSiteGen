@@ -11,4 +11,4 @@ class ParentNode(HTMLNode):
         if not self.children:
             raise ValueError(f"Missing children : {self.children}")
         else:
-            return f'<{self.tag}>{" ".join(str(child.to_html()) for child in self.children)}</{self.tag}>'
+            return f'<{self.tag}>{"".join(str(child.to_html()) for child in self.children)}</{self.tag}>'
