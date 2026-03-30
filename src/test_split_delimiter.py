@@ -54,3 +54,14 @@ class TestSplitDelimiter(unittest.TestCase):
             TextNode(" word too", TextType.TEXT)
         ])
         
+    def test_multiple_node_with_one_not_text(self):
+        node = TextNode("I'm an italic textnode", TextType.ITALIC)
+        node2 = TextNode("I'm another textnode with a `code` word too", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node, node2],"`", TextType.TEXT)
+        self.assertEqual(new_nodes, [
+            TextNode("I'm an italic textnode", TextType.ITALIC),
+            TextNode("I'm another textnode with a ", TextType.TEXT),
+            TextNode("code", TextType.CODE),
+            TextNode(" word too", TextType.TEXT)
+        ])
+        
