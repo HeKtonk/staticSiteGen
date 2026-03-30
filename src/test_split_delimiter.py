@@ -29,3 +29,8 @@ class TestSplitDelimiter(unittest.TestCase):
             TextNode("code", TextType.CODE),
             TextNode(" word", TextType.TEXT)
         ])
+        
+    def test_unknown_delimiter_in_text(self):
+        node = TextNode("I'm a textnode with an unknown delimiter", TextType.TEXT)
+        with self.assertRaises(Exception): new_nodes = split_nodes_delimiter([node],"*_", TextType.TEXT)
+        
