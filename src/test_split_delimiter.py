@@ -20,3 +20,12 @@ class TestSplitDelimiter(unittest.TestCase):
             TextNode("italic", TextType.ITALIC),
             TextNode(" word", TextType.TEXT)
         ])
+        
+    def test_code_delimiter_in_text(self):
+        node = TextNode("I'm a textnode with a `code` word", TextType.TEXT)
+        new_nodes = split_nodes_delimiter([node],"`", TextType.TEXT)
+        self.assertEqual(new_nodes, [
+            TextNode("I'm a textnode with a ", TextType.TEXT),
+            TextNode("code", TextType.CODE),
+            TextNode(" word", TextType.TEXT)
+        ])
