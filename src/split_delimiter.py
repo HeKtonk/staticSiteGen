@@ -1,4 +1,5 @@
 from textnode import TextType, TextNode
+import re
 
 def split_nodes_delimiter(old_nodes, delimiter, text_type):
     markdownType = ["","**","_","`"]
@@ -21,4 +22,11 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
             else:
                 raise Exception("Invalid Markdown Syntax")
     return new_nodes
-                
+
+def extract_markdown_images(text):
+    regex = "!\[.*?\]\(https?:\/\/\w\.([A-Z]|[a-z]|[0-9]|-)+\.([a-z]|[0-9]){2,3}\/([A-Z]|[a-z]|[0-9]|[-_/])+\.([A-Z]|[a-z]){3,4}\)"
+    matches = re.findall()
+
+def extract_markdown_links(text):
+    regex = "\[.*?\]\(https?:\/\/www\.([A-Z]|[a-z]|[0-9]|-)+\.([a-z]|[0-9]){2,3}([A-Z]|[a-z]|[0-9]|[-_/@])*\)"
+    pass
