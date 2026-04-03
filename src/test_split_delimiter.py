@@ -80,6 +80,18 @@ class TestSplitDelimiter(unittest.TestCase):
 
     def test_extract_markdown_link(self):
         matches = extract_markdown_links(
-            "This is text with a [to youtube](https://www.youtube.com/@bootdotdev)"
+            "This is text with a [to youtube](https://www.youtube.com/@bootdotdev) and a [boot dev](https://boot.dev)"
         )
-        self.assertListEqual([("to youtube","https://www.youtube.com/@bootdotdev")], matches)
+        self.assertListEqual([("to youtube", "https://www.youtube.com/@bootdotdev"),("boot dev", "https://boot.dev")], matches)
+
+    def test_extract_markdown_image_with_link(self):
+        matches = extract_markdown_images(
+            "This is text with a ![image](https://i.imgur.com/wjjcJKZ.png) and a [boot dev](https://boot.dev)"
+        )
+        self.assertListEqual([("image", "https://i.imgur.com/wjjcJKZ.png")], matches)
+
+    def test_extract_markdown_link_with_false_link(self):
+        matches = extract_markdown_links(
+            "This is text with a [to youtube](https://www.youtube.com/@bootdotdev) and a ![boot dev](https://boot.dev)"
+        )
+        self.assertListEqual([("to youtube", "https://www.youtube.com/@bootdotdev")], matches)
