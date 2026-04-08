@@ -1,5 +1,6 @@
 from enum import Enum
 import leafnode
+import split_delimiter
 
 class TextType(Enum):
     TEXT = ""
@@ -31,6 +32,15 @@ class TextNode:
                 return leafnode.LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
             case _:
                 raise ValueError
+            
+    def text_to_textnodes(text):
+        textnode = TextNode(text, TextType.TEXT)
+        textnodes = split_delimiter.split_nodes_delimiter([textnode], "**", TextType.BOLD)
+        textnodes = split_delimiter.split_nodes_delimiter(textnodes, "_", TextType.ITALIC)
+        textnodes = split_delimiter.split_nodes_delimiter(textnodes, "`", TextType.CODE)
+        textnodes = split_delimiter.split_nodes_image(textnodes)
+        textnodes = split_delimiter.split_nodes_link(textnodes)
+        return textnodes
 
     def __eq__(self, other):
         return (isinstance(other, TextNode)) and (self.text == other.text) and (self.text_type == other.text_type) and (self.url == other.url)

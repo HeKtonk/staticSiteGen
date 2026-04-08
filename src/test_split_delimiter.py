@@ -69,7 +69,9 @@ class TestSplitDelimiter(unittest.TestCase):
         self.assertEqual(new_nodes, [
             TextNode("I'm a textnode with two ", TextType.TEXT),
             TextNode("code", TextType.CODE),
-            TextNode(" `word`!", TextType.TEXT)
+            TextNode(" ", TextType.TEXT),
+            TextNode("word", TextType.CODE),
+            TextNode("!", TextType.TEXT)
         ])
     
     def test_extract_markdown_images(self):
